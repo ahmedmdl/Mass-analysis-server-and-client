@@ -10,5 +10,6 @@ kp.registerKeyPressHandler(printkey)
 try:
   while(True):
     time.sleep(0.2)
+    print('ll')
 except:
  kp.cleanup()
