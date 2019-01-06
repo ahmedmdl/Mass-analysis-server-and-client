@@ -22,7 +22,7 @@ class KeypadFactory():
                       repeat= False, repeat_delay= None, repeat_rate= None,
                       gpio_mode= GPIO.BCM):
 
-        if row is None or col is None or row_pins != row or col_pins != col:
+        if row is None or col is None:
             print("input Not correct")
             return 0
 
