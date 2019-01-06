@@ -131,6 +131,7 @@ class Keypad():
             if tmpRead == 0:
                 rowVal = i
                 break
+        print(rowVal)
 
         # Scan columns for pressed key
         colVal = None
@@ -139,7 +140,7 @@ class Keypad():
             if tmpRead == 0:
                 colVal = i
                 break
-
+        print(colVal)
         # Determine pressed key, if any
         if colVal is not None:
             keyVal = self._keypad[rowVal][colVal]
