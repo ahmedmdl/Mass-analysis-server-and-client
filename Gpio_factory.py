@@ -85,7 +85,7 @@ class Keypad():
         if currTime < self._last_key_press_time + self._key_delay:
             return
 
-        keyPressed = self.getKey(c,channel)
+        keyPressed = self.getKey(channel)
         if keyPressed is not None:
             with open('Pi_dump.txt','w') as f:
                 x = 'r'+ str(keyPressed[0])
