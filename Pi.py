@@ -11,4 +11,4 @@ try:
   while(True):
     time.sleep(0.2)
 except:
- keypad.cleanup()
+ kp.cleanup()
