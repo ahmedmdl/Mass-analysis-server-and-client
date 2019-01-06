@@ -88,10 +88,10 @@ class Keypad():
         keyPressed = self.getKey(channel)
         if keyPressed is not None:
             with open('Pi_dump.txt','w') as f:
-                x = 'r'+ str(keyPressed[0])
+                x = 'r'+ str(keyPressed)
                 f.write(x)
                 sleep(0.1)
-                x = 'c'+ str(keyPressed[1])
+                x = 'c'+ str(keyPressed)
                 f.write(x)                
             for handler in self._handlers:
                 handler(keyPressed)
