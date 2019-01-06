@@ -9,7 +9,7 @@ DEFAULT_DEBOUNCE_TIME = 10
 
 class KeypadFactory():
 
-    def keypad_gen(row,col):
+    def keypad_gen(self,row,col):
         arr = []
         for y in range(0,row):
            arr.append([i for i in range(y*col +1, y*col +col +1)])
