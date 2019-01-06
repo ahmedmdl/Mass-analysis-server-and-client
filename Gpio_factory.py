@@ -27,7 +27,7 @@ class KeypadFactory():
             return 0
 
         keypad = self.keypad_gen(row,col)
-            
+        print(keypad)
         return Keypad(keypad, row_pins, col_pins, key_delay, repeat, repeat_delay, repeat_rate, gpio_mode)
 
 class Keypad():
