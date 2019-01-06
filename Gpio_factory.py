@@ -81,7 +81,7 @@ class Keypad():
         self._onKeyPress(None)
 
     def _onKeyPress(self,channel):
-        currTime = self.getTimeInMillis()
+        currTime = time.time() * 1000 #self.getTimeInMillis()
         if currTime < self._last_key_press_time + self._key_delay:
             return
         print('key_pressed')
@@ -152,8 +152,8 @@ class Keypad():
             self._repeat_timer.cancel()
         GPIO.cleanup()
 
-    def getTimeInMillis(self):
-        return time.time() * 1000
+    #def getTimeInMillis(self):
+       # return time.time() * 1000
 """"
 
     ROW_PINS = [4, 17, 18, 27, 22]
