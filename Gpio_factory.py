@@ -81,9 +81,10 @@ class Keypad():
         self._onKeyPress(None)
 
     def _onKeyPress(self,channel):
-        currTime = time.time() * 1000 #self.getTimeInMillis()
-        if currTime < self._last_key_press_time + self._key_delay:
-            return
+        currTime = 100 #time.time() * 1000 #self.getTimeInMillis()
+        #if currTime < self._last_key_press_time + self._key_delay:
+            #return
+        print(currTime)    
         print('key_pressed')
         keyPressed = self.getKey(channel)
         print('key_is')
