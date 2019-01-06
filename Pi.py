@@ -7,6 +7,8 @@ kp = GP.KeypadFactory().create_keypad(row=5 , col=4, row_pins= ROW_PINS, col_pin
 def printkey(key):
     print(key)
 kp.registerKeyPressHandler(printkey)
-i = raw_input('')
-
-kp.cleanup()
+try:
+  while(True):
+    time.sleep(0.2)
+except:
+ keypad.cleanup()
