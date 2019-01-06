@@ -26,7 +26,7 @@ class KeypadFactory():
             print("input Not correct")
             return 0
 
-        keypad = keypad_gen(row,col)
+        keypad = self.keypad_gen(row,col)
             
         return Keypad(keypad, row_pins, col_pins, key_delay, repeat, repeat_delay, repeat_rate, gpio_mode)
 
