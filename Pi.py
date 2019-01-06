@@ -11,6 +11,6 @@ try:
   while(True):
     time.sleep(0.2)
     print('hi')
-except:
-     print('bye')
+except Exception as e: 
+     print(e)
      kp.cleanup()
