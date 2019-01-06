@@ -65,7 +65,7 @@ class Keypad():
         GPIO.setmode(gpio_mode)
 
         self._setRowsAsInput()
-        self._setColumnsAsOutput()
+        self._setColumnsAsInput()
 
     def registerKeyPressHandler(self, handler):
         self._handlers.append(handler)
