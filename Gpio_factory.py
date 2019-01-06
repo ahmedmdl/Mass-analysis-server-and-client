@@ -84,8 +84,9 @@ class Keypad():
         currTime = self.getTimeInMillis()
         if currTime < self._last_key_press_time + self._key_delay:
             return
-
+        print('key_pressed')
         keyPressed = self.getKey(channel)
+        print('key_is')
         if keyPressed is not None:
             with open('Pi_dump.txt','w') as f:
                 x = 'r'+ str(keyPressed)
@@ -111,12 +112,14 @@ class Keypad():
         for i in range(len(self._row_pins)):
             GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
             GPIO.add_event_detect(self._row_pins[i], GPIO.BOTH, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)
+        print('rows_done')
 
     def _setColumnsAsInput(self):
         # Set all columns as output low
         for j in range(len(self._col_pins)):
             GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+        print('cols_done')
+        
     def getKey(self,channel):
 
         keyVal = None
