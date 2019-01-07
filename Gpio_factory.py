@@ -84,10 +84,10 @@ class Keypad():
         currTime = self.getTimeInMillis()
         #if currTime < self._last_key_press_time + self._key_delay:
             #return
-        print(currTime)    
+        #print(currTime)    
         print('key_pressed')
         keyPressed = self.getKey(channel)
-        print('key_is')
+        print("key_is ",keyPressed)
         if keyPressed is not None:
             with open('Pi_dump.txt','w') as f:
                 x = 'r'+ str(keyPressed)
@@ -124,12 +124,13 @@ class Keypad():
     def getKey(self,channel):
 
         keyVal = None
-        print("channel %d" % channel)
+        #print("channel %d" % channel)
         # Scan rows for pressed key
         rowVal = None
         for i in range(len(self._row_pins)):
-            tmpRead = GPIO.input(self._row_pins[i])
-            if tmpRead == 0:
+            #tmpRead = GPIO.input(self._row_pins[i])
+            #if tmpRead == 0:
+            if channel == self._row_pins[i]
                 rowVal = i
                 break
         print(rowVal)
