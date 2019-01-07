@@ -130,7 +130,7 @@ class Keypad():
         for i in range(len(self._row_pins)):
             #tmpRead = GPIO.input(self._row_pins[i])
             #if tmpRead == 0:
-            if channel == self._row_pins[i]
+            if channel == self._row_pins[i]:
                 rowVal = i
                 break
         print(rowVal)
