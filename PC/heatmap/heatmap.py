@@ -34,7 +34,7 @@ if __name__ == '__main__':
    print(x,y)
    
    #df = pd.DataFrame(data.stack(), columns=['rate']).reset_index()
-   colors = ["#CCEBFF","#B2E0FF","#99D6FF","#80CCFF","#66c2FF","#4DB8FF","#33ADFF","#19A3FF", "#0099FF", "#008AE6", "#007ACC","#006BB2 ", "#005C99", "#004C80", "#003D66", "#002E4C", "#001F33", "#000F1A", "#000000"]
+   colors = ["#CCEBFF","#B2E0FF","#99D6FF","#80CCFF","#66c2FF","#4DB8FF","#33ADFF","#19A3FF", "#0099FF", "#008AE6", "#007ACC","#006BB2", "#005C99", "#004C80", "#003D66", "#002E4C", "#001F33", "#000F1A", "#000000"]
    mapper = LinearColorMapper(palette=colors, low=df.taps.min(), high=df.taps.max())
 
    TOOLS = "hover,save,pan,box_zoom,reset,wheel_zoom"
