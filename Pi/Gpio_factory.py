@@ -8,11 +8,12 @@ DEFAULT_REPEAT_RATE = 1.0
 DEFAULT_DEBOUNCE_TIME = 10
 
 class KeypadFactory():
-
-    def keypad_gen(self,row,col):
+    
+    #create keypad array
+    def keypad_gen(self, row, col):
         arr = []
-        for y in range(0,row):
-           arr.append([i for i in range(y*col +1, y*col +col +1)])
+        for y in range(0, row):
+           arr.append([i for i in range(y*col+1, y*col+col+1)])
         return arr
         
     def create_keypad(self,
@@ -22,12 +23,15 @@ class KeypadFactory():
                       repeat= False, repeat_delay= None, repeat_rate= None,
                       gpio_mode= GPIO.BCM):
 
-        if row is None or col is None:
-            print("input Not correct")
-            return 0
+        assert(row is None),"Incorrect keypad input, row is None"
+        assert(col is None),"Incorrect keypad input, col is None"
+        assert(row_pins is None),"Incorrect keypad input, row_pins is None"
+        assert(col_pins is None),"Incorrect keypad input, col_pins is None"
+        assert(row != len(row_pins)),"Incorrect keypad input, number of rows not equal to number of row pins "
+        assert(col != len(col_pins)),"Incorrect keypad input, number of col not equal to number of col pins "
 
         keypad = self.keypad_gen(row,col)
-        print(keypad)
+
         return Keypad(keypad, row_pins, col_pins, key_delay, repeat, repeat_delay, repeat_rate, gpio_mode)
 
 class Keypad():
@@ -47,7 +51,7 @@ class Keypad():
         self._repeat = repeat
         self._repeat_delay = repeat_delay
         self._repeat_rate = repeat_rate
-        self._repeat_timer = None
+        self._repeat_timer = None                    #all of these repeates are just to avoid switch bouncing
         if repeat:
             self._repeat_delay = repeat_delay if repeat_delay is not None else DEFAULT_REPEAT_DELAY
             self._repeat_rate = repeat_rate if repeat_rate is not None else DEFAULT_REPEAT_RATE
@@ -80,25 +84,29 @@ class Keypad():
         self._repeat_timer = None
         self._onKeyPress(None)
 
-    def _onKeyPress(self,channel):
+    def _onKeyPress(self,channel):               
         currTime = self.getTimeInMillis()
-        if currTime < self._last_key_press_time + self._key_delay:
+        if currTime < self._last_key_press_time + self._key_delay:    #ignore switch bouncing
             return
-        #print(currTime)    
-        print('key_pressed')
+
+        if type(channel) is not int:
+            raise TypeError("channel type:%s is not int" % type(channel)) 
+
+        if 0 > channel > 40:
+            raise ValueError("channel number value:%d is not within limits" % channel)
+
         keyPressed = self.getKey(channel)
-        print("key_is ",keyPressed)
+        
         if keyPressed is not None:
-            with open('Pi_dump.txt','w') as f:
-                x = 'r'+ str(keyPressed)
-                f.write(x)
-                #sleep(0.1)
-                x = 'c'+ str(keyPressed)
-                f.write(x)                
-            for handler in self._handlers:
+            if type(keyPressed) is not int:
+                raise TypeError("keyPressed type:%s is not int" % type(keyPressed))
+                           
+            for handler in self._handlers:    #functions to be called on the 
                 handler(keyPressed)
+
+            #ignore switch bouncing
             self._last_key_press_time = currTime
-            if self._repeat:
+            if self._repeat:                             
                 self._repeat_timer = Timer(self._repeat_delay if self._first_repeat else 1.0/self._repeat_rate, self._repeatTimer)
                 self._first_repeat = False
                 self._repeat_timer.start()
@@ -113,28 +121,25 @@ class Keypad():
         for i in range(len(self._row_pins)):
             GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
             GPIO.add_event_detect(self._row_pins[i], GPIO.FALLING, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
-        print('rows_done')
 
     def _setColumnsAsInput(self):
-        # Set all columns as output low
+        # Set all columns as input
         for j in range(len(self._col_pins)):
             GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        print('cols_done')
         
     def getKey(self,channel):
-
         keyVal = None
-        # print("channel %d" % channel)
+        
         # Scan rows for pressed key
         rowVal = None
         for i in range(len(self._row_pins)):
-            #tmpRead = GPIO.input(self._row_pins[i])
-            #if tmpRead == 0:
             if channel == self._row_pins[i]:
                 rowVal = i
                 break
-        print("row ",rowVal)
-
+            
+        if rowVal is None: 
+            raise ValueError("rowVal is None")
+        
         # Scan columns for pressed key
         colVal = None
         for i in range(len(self._col_pins)):
@@ -142,10 +147,11 @@ class Keypad():
             if tmpRead == 0:
                 colVal = i
                 break
-        print("col ",colVal)
-        # Determine pressed key, if any
-        if colVal is not None:
-            keyVal = self._keypad[rowVal][colVal]
+            
+       if colVal is None:
+            raise ValueError("colVal is None")
+
+        keyVal = self._keypad[rowVal][colVal]
 
         return keyVal
 
