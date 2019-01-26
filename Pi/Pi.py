@@ -6,7 +6,7 @@ COL_PINS = [10, 9]
 ROW_No = 2
 COL_No = 2
 
-kp = GP.KeypadFactory().create_keypad(row=ROW_No , col=COL_No, row_pins= ROW_PINS, col_pins= COL_PINS, repeat= True, repeat_rate= 5, key_delay= 100)
+kp = GP.KeypadFactory().create_keypad(row= ROW_No , col= COL_No, row_pins= ROW_PINS, col_pins= COL_PINS, repeat= True, repeat_rate= 5, key_delay= 100)
 
 def printkey(key):
    print(key)
