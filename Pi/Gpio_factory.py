@@ -148,7 +148,7 @@ class Keypad():
                 colVal = i
                 break
             
-       if colVal is None:
+        if colVal is None:
             raise ValueError("colVal is None")
 
         keyVal = self._keypad[rowVal][colVal]
