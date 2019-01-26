@@ -23,14 +23,14 @@ class KeypadFactory():
                       repeat= False, repeat_delay= None, repeat_rate= None,
                       gpio_mode= GPIO.BCM):
 
-        assert(row is None),"Incorrect keypad input, row is None"
-        assert(col is None),"Incorrect keypad input, col is None"
-        assert(row_pins is None),"Incorrect keypad input, row_pins is None"
-        assert(col_pins is None),"Incorrect keypad input, col_pins is None"
-        assert(row != len(row_pins)),"Incorrect keypad input, number of rows not equal to number of row pins "
-        assert(col != len(col_pins)),"Incorrect keypad input, number of col not equal to number of col pins "
+        #assert(row is None),"Incorrect keypad input, row is None"
+        #assert(col is None),"Incorrect keypad input, col is None"
+        #assert(row_pins is None),"Incorrect keypad input, row_pins is None"
+        #assert(col_pins is None),"Incorrect keypad input, col_pins is None"
+        #assert(row != len(row_pins)),"Incorrect keypad input, number of rows not equal to number of row pins "
+        #assert(col != len(col_pins)),"Incorrect keypad input, number of col not equal to number of col pins "
+        print(row,col,row_pins,col_pins)
         
-
         keypad = self.keypad_gen(row,col)
 
         return Keypad(keypad, row_pins, col_pins, key_delay, repeat, repeat_delay, repeat_rate, gpio_mode)
