@@ -146,6 +146,7 @@ class Keypad():
         colVal = None
         for i in range(len(self._col_pins)):
             tmpRead = GPIO.input(self._col_pins[i])
+            print(tmpRead)
             if tmpRead == 0:
                 colVal = i
                 break
