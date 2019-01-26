@@ -122,7 +122,7 @@ class Keypad():
         # Set all rows as input
         for i in range(len(self._row_pins)):
             GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            GPIO.add_event_detect(self._row_pins[i], GPIO.RISING, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
+            GPIO.add_event_detect(self._row_pins[i], GPIO.BOTH, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
 
     def _setColumnsAsInput(self):
         # Set all columns as input
