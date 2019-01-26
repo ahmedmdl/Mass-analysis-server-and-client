@@ -14,6 +14,7 @@ class KeypadFactory():
         arr = []
         for y in range(0, row):
            arr.append([i for i in range(y*col+1, y*col+col+1)])
+        print(arr)
         return arr
         
     def create_keypad(self,
@@ -121,7 +122,7 @@ class Keypad():
         # Set all rows as input
         for i in range(len(self._row_pins)):
             GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            GPIO.add_event_detect(self._row_pins[i], GPIO.FALLING, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
+            GPIO.add_event_detect(self._row_pins[i], GPIO.RISING, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
 
     def _setColumnsAsInput(self):
         # Set all columns as input
