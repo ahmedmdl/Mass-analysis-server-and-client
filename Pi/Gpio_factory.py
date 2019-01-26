@@ -137,7 +137,7 @@ class Keypad():
             if channel == self._row_pins[i]:
                 rowVal = i
                 break
-            
+        print(rowVal)    
         if rowVal is None: 
             raise ValueError("rowVal is None")
         
