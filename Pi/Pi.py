@@ -9,7 +9,7 @@ COL_No = 2
 kp = GP.KeypadFactory().create_keypad(row= 2 , col= 2, row_pins= [18, 4], col_pins= [10, 9], repeat= True, repeat_rate= 5, key_delay= 100)
 
 def printkey(key):
-   print(key)
+   print(key,"key")
    with open('Pi_dump.txt','w') as f:  
      f.write(str(key))
      
