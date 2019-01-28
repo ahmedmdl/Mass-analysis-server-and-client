@@ -121,13 +121,13 @@ class Keypad():
     def _setRowsAsInput(self):
         # Set all rows as input
         for i in range(len(self._row_pins)):
-            GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+            GPIO.setup(self._row_pins[i], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
             GPIO.add_event_detect(self._row_pins[i], GPIO.FALLING, callback=self._onKeyPress, bouncetime=DEFAULT_DEBOUNCE_TIME)#GPIO.BOTH
 
     def _setColumnsAsInput(self):
         # Set all columns as input
         for j in range(len(self._col_pins)):
-            GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+            GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         
     def getKey(self,channel):
         keyVal = None
@@ -138,7 +138,7 @@ class Keypad():
             if channel == self._row_pins[i]:
                 rowVal = i
                 break
-        print(rowVal,"row")    
+       #print(rowVal,"row")    
         if rowVal is None: 
             raise ValueError("rowVal is None")
         
