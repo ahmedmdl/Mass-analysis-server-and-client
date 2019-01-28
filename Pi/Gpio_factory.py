@@ -91,8 +91,8 @@ class Keypad():
         if currTime < self._last_key_press_time + self._key_delay:    #ignore switch bouncing
             return
 
-        #if type(channel) is not int:
-           # raise TypeError("channel type:%s is not int" % type(channel)) 
+        if type(channel) is not int:
+          return
 
         if 0 > channel > 40:
             raise ValueError("channel number value:%d is not within limits" % channel)
