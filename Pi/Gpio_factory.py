@@ -138,7 +138,7 @@ class Keypad():
             if channel == self._row_pins[i]:
                 rowVal = i
                 break
-        print(rowVal,"row")    
+        #print(rowVal,"row")    
         if rowVal is None: 
             raise ValueError("rowVal is None")
         
@@ -146,7 +146,7 @@ class Keypad():
         colVal = None
         for i in range(len(self._col_pins)):
             tmpRead = GPIO.input(self._col_pins[i])
-            print(tmpRead,"tmp")
+            #print(tmpRead,"tmp")
             if tmpRead == 0:
                 print(tmpRead,"tmp0")
                 colVal = i
