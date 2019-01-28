@@ -127,7 +127,7 @@ class Keypad():
     def _setColumnsAsInput(self):
         # Set all columns as input
         for j in range(len(self._col_pins)):
-            GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+            GPIO.setup(self._col_pins[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
     def getKey(self,channel):
         keyVal = None
