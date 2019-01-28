@@ -96,7 +96,7 @@ class Keypad():
 
         if 0 > channel > 40:
             raise ValueError("channel number value:%d is not within limits" % channel)
-
+        print(channel,"ch")
         keyPressed = self.getKey(channel)
         
         if keyPressed is not None:
