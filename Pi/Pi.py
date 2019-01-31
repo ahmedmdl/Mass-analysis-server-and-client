@@ -1,8 +1,8 @@
 import Gpio_factory as GP
 import time
 
-ROW_PINS = [18, 4, 3]
-COL_PINS = [10, 9, 2]
+ROW_PINS = [18, 4, 27]
+COL_PINS = [10, 9, 25]
 ROW_No = 3
 COL_No = 3
 
